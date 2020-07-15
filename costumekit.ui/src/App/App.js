@@ -1,15 +1,24 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <button className="btn btn-success">hey</button>
-      <p><i class="fab fa-accessible-icon"></i></p>
-      <h2>INSIDE APP COMPONENT</h2>
-      <button className="btn btn-info"><i className="fas fa-rocket"></i></button>
-    </div>
-  );
+import Home from '../components/pages/Home/Home';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <button className="btn btn-success">hey</button>
+        <Home />
+      </div>
+    );
+  }
 }
 
 export default App;
