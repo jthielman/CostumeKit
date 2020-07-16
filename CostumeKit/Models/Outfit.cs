@@ -12,5 +12,6 @@ namespace CostumeKit.Models
         public string Description { get; set; }
         public int UserId { get; set; }
         public int SettingId { get; set; }
+        public string SettingName { get; set; }
     }
 }

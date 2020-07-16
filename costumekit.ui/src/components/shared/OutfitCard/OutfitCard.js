@@ -9,7 +9,7 @@ class OutfitCard extends React.Component {
       <div className="card" key={outfit.id}>
         <div className="card-body">
           <h5 className="card-title">{outfit.name}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">[outfit setting goes here]</h6>
+          <h6 className="card-subtitle mb-2 text-muted">{outfit.settingName}</h6>
           <p className="card-text">{outfit.description}</p>
           {/* TODO: add links to this card to outfit page and...something else?
           <a href="#" className="card-link">Card link</a>

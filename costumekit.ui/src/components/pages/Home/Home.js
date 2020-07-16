@@ -9,10 +9,12 @@ import './Home.scss';
 class Home extends React.Component {
   state = {
     outfits: [],
+    userId: 1,
   }
 
   getOutfits = () => {
-    outfitData.getUserOutfits(1)
+    const { userId } = this.state;
+    outfitData.getUserOutfits(userId)
       .then((outfits) => this.setState({ outfits }))
       .catch((err) => console.error(err));
   }

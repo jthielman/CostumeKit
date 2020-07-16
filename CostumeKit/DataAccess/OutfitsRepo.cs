@@ -20,8 +20,10 @@ namespace CostumeKit.DataAccess
         public IEnumerable<Outfit> GetUserOutfits(int userId)
         {
             var sql = @"
-                        select *
-                        from [Outfits]
+                        select o.*, s.[Name] SettingName 
+	                    from Outfits o
+	                        join Settings s
+	                            on o.SettingId = s.Id
                         where UserId = @UserId;
                         ";
 
