@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Grenze&family=Grenze+Gotisch:wght@500&display=swap');
+@import '../styles/variables';
+
+// font-family: 'Grenze', serif;
+// font-family: 'Grenze Gotisch', cursive;
+
+.App {
+  text-align: center;
+  font-family: 'Grenze', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Grenze Gotisch', cursive;
+}
+
+body{
+  background-color: $backgroundColor;
+}
