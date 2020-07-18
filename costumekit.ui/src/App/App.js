@@ -9,6 +9,7 @@ import {
 import './App.scss';
 
 import Home from '../components/pages/Home/Home';
+import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/', state: { from: props.location } }} />);
@@ -30,7 +31,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          {/* TODO: put navbar here */}
+          <MyNavbar />
           <Switch>
             <PublicRoute path="/" exact component={Home} authed={authed} />
           </Switch>
