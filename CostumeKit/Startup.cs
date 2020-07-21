@@ -35,6 +35,7 @@ namespace CostumeKit
             //service registration
             services.AddTransient<UsersRepo>(); // create new instance every time
             services.AddTransient<OutfitsRepo>();
+            services.AddTransient<GarmentsRepo>();
             services.AddSingleton<IConfiguration>(Configuration); // only create one instance and share it always
         }
 
