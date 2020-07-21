@@ -9,4 +9,10 @@ const getUserOutfits = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserOutfits };
+const getOneOutfit = (outfitId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/outfits/${outfitId}`)
+    .then((output) => resolve(output.data))
+    .catch((err) => reject(err));
+});
+
+export default { getUserOutfits, getOneOutfit };

@@ -10,20 +10,21 @@ import './App.scss';
 
 import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
+import OneOutfit from '../components/pages/OneOutfit/OneOutfit';
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
-  const routeChecker = (props) => (authed === false ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/', state: { from: props.location } }} />);
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
-
-// const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-//   const routeChecker = (props) => (authed === true ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/auth', state: { from: props.location } }} />);
+// const PublicRoute = ({ component: Component, authed, ...rest }) => {
+//   const routeChecker = (props) => (authed === false ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/', state: { from: props.location } }} />);
 //   return <Route {...rest} render={(props) => routeChecker(props)} />;
 // };
 
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === true ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/auth', state: { from: props.location } }} />);
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+
 class App extends React.Component {
   state = {
-    authed: false,
+    authed: true,
   }
 
   render() {
@@ -31,9 +32,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <MyNavbar />
+          <MyNavbar authed={authed} />
           <Switch>
-            <PublicRoute path="/" exact component={Home} authed={authed} />
+            <PrivateRoute path="/" exact component={Home} authed={authed} />
+            <PrivateRoute path="/outfit/:outfitId" exact component={OneOutfit} authed={authed} />
           </Switch>
         </Router>
       </div>
