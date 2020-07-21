@@ -41,5 +41,14 @@ namespace CostumeKit.Controllers
                 return Ok(outfits);
             }
         }
+
+        //api/Outfits/1
+        [HttpGet("{outfitId}")]
+        public IActionResult GetOutfitByOutfitId(int outfitId)
+        {
+            var outfit = _outfitsRepository.GetOutfitById(outfitId);
+            if (outfit == null) return NotFound("No such outfit found");
+            else return Ok(outfit);
+        }
     }
 }

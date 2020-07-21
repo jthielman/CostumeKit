@@ -34,5 +34,23 @@ namespace CostumeKit.DataAccess
                 return result;
             }
         }
+
+        public Outfit GetOutfitById(int outfitId)
+        {
+            var sql = @"
+                        select o.*, s.[Name] SettingName
+                        from Outfits o
+                            join Settings s
+                                on o.settingId = s.Id
+                        where o.Id = @OutfitId;
+                        ";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var parameters = new { OutfitId = outfitId };
+                var result = db.QueryFirstOrDefault<Outfit>(sql, parameters);
+                return result;
+            }
+        }
     }
 }
