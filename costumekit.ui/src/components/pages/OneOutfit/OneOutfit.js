@@ -3,6 +3,8 @@ import React from 'react';
 import outfitData from '../../../helpers/data/outfitData';
 import garmentData from '../../../helpers/data/garmentData';
 
+import GarmentCard from '../../shared/GarmentCard/GarmentCard';
+
 import './OneOutfit.scss';
 
 class OneOutfit extends React.Component {
@@ -26,11 +28,12 @@ class OneOutfit extends React.Component {
   componentDidMount() {
     const { outfitId } = this.props.match.params;
     this.getOutfit(outfitId);
+    this.getGarments(outfitId);
   }
 
   render() {
     // const { outfitId } = this.props.match.params;
-    const { outfit } = this.state;
+    const { outfit, garments } = this.state;
     return (
       <div className="OneOutfit container">
         <div className="row d-flex justify-content-center align-items-baseline">
@@ -38,6 +41,9 @@ class OneOutfit extends React.Component {
           <p className="outfit-description col">{outfit.description}</p>
         </div>
         <h3>Garments:</h3>
+        <div className="row">
+          {garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)}
+        </div>
       </div>
     );
   }
