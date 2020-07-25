@@ -14,7 +14,7 @@ class Home extends React.Component {
     settings: [],
     newOutfitName: '',
     newOutfitDescription: '',
-    newOutfitSettingId: 0,
+    newOutfitSettingId: 1,
   }
 
   getOutfits = () => {
@@ -40,6 +40,21 @@ class Home extends React.Component {
     document.getElementById('new-outfit-form').classList.toggle('show');
   }
 
+  nameChange = (e) => {
+    e.preventDefault();
+    this.setState({ newOutfitName: e.target.value });
+  }
+
+  descriptionChange = (e) => {
+    e.preventDefault();
+    this.setState({ newOutfitDescription: e.target.value });
+  }
+
+  settingChange= (e) => {
+    e.preventDefault();
+    this.setState({ newOutfitSettingId: parseInt(e.target.value, 10) });
+  }
+
   addOutfit = (e) => {
     e.preventDefault();
     const {
@@ -52,7 +67,10 @@ class Home extends React.Component {
       settingId: newOutfitSettingId,
     };
     outfitData.addOutfit(outfitToAdd)
-      .then((newOutfit) => this.props.history.push(`/outfit/${newOutfit.id}`))
+      .then((newOutfit) => {
+        console.log(newOutfit);
+        this.props.history.push(`/outfit/${newOutfit.id}`);
+      })
       .catch((err) => console.error('error in addOutfit', err));
   }
 
@@ -71,19 +89,19 @@ class Home extends React.Component {
           <form className="dropdown-menu p-4" id="new-outfit-form" aria-labelledby="dropdownMenuButton">
             <div className="form-group">
               <label htmlFor="outfitName">Name your outfit</label>
-              <input type="email" className="form-control" id="outfitName" placeholder="Aragorn" />
+              <input type="text" className="form-control" id="outfitName" placeholder="Aragorn" onChange={this.nameChange}/>
             </div>
             <div className="form-group">
               <label htmlFor="outfitDescription">Tell about your outfit</label>
-              <textarea type="password" className="form-control" id="outfitDescription" placeholder="Isildur's heir, Elessar, the Elfstone..." />
+              <textarea className="form-control" id="outfitDescription" rows="3" placeholder="Isildur's heir, Elessar, the Elfstone, Telcontar, Thorongil..." onChange={this.descriptionChange} />
             </div>
             <div className="form-group">
               <label htmlFor="settingDropdown">Pick a setting</label>
-              <select className="form-control" id="settingDropdown">
-                {settings.map((setting) => <option key={setting.id}>{setting.name}</option>)}
+              <select className="form-control" id="settingDropdown" onChange={this.settingChange}>
+                {settings.map((setting) => <option key={setting.id} value={setting.id}>{setting.name}</option>)}
               </select>
             </div>
-            <button onClick={this.ekeOutfit} type="submit" className="btn btn-primary">Add outfit</button>
+            <button onClick={this.addOutfit} type="submit" className="btn btn-primary">Add outfit</button>
           </form>
         </div>
       </div>

@@ -17,7 +17,7 @@ const getOneOutfit = (outfitId) => new Promise((resolve, reject) => {
 
 const addOutfit = (outfit) => new Promise((resolve, reject) => {
   axios.post(`${baseUrl}/outfits/add`, outfit)
-    .then((returnedOutfit) => resolve(returnedOutfit))
+    .then((returnedOutfit) => resolve(returnedOutfit.data))
     .catch((err) => reject(err));
 });
 
