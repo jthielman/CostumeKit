@@ -52,5 +52,19 @@ namespace CostumeKit.DataAccess
                 return result;
             }
         }
+
+        public Outfit AddAnOutfit(Outfit outfitToAdd)
+        {
+            var sql = @"INSERT INTO Outfits ( Name, Description, UserId, SettingId)
+                     output inserted.*
+                     VALUES(@Name, @Description,@UserId, @SettingId);";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var results = db.QueryFirstOrDefault<Outfit>(sql, outfitToAdd);
+                var newOutfit = GetOutfitById(results.Id);
+                return newOutfit;
+            }
+        }
     }
 }

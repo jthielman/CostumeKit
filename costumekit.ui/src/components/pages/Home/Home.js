@@ -12,6 +12,9 @@ class Home extends React.Component {
     outfits: [],
     userId: 1,
     settings: [],
+    newOutfitName: '',
+    newOutfitDescription: '',
+    newOutfitSettingId: 0,
   }
 
   getOutfits = () => {
@@ -37,6 +40,22 @@ class Home extends React.Component {
     document.getElementById('new-outfit-form').classList.toggle('show');
   }
 
+  addOutfit = (e) => {
+    e.preventDefault();
+    const {
+      newOutfitName, newOutfitDescription, userId, newOutfitSettingId,
+    } = this.state;
+    const outfitToAdd = {
+      name: newOutfitName,
+      description: newOutfitDescription,
+      userId,
+      settingId: newOutfitSettingId,
+    };
+    outfitData.addOutfit(outfitToAdd)
+      .then((newOutfit) => this.props.history.push(`/outfit/${newOutfit.id}`))
+      .catch((err) => console.error('error in addOutfit', err));
+  }
+
   render() {
     const { outfits, settings } = this.state;
     return (
@@ -59,12 +78,12 @@ class Home extends React.Component {
               <textarea type="password" className="form-control" id="outfitDescription" placeholder="Isildur's heir, Elessar, the Elfstone..." />
             </div>
             <div className="form-group">
-              <label htmlFor="settingDropdown">Example select</label>
+              <label htmlFor="settingDropdown">Pick a setting</label>
               <select className="form-control" id="settingDropdown">
                 {settings.map((setting) => <option key={setting.id}>{setting.name}</option>)}
               </select>
             </div>
-            <button type="submit" className="btn btn-primary">Sign in</button>
+            <button onClick={this.ekeOutfit} type="submit" className="btn btn-primary">Add outfit</button>
           </form>
         </div>
       </div>

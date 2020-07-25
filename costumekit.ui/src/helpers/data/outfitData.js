@@ -15,4 +15,10 @@ const getOneOutfit = (outfitId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserOutfits, getOneOutfit };
+const addOutfit = (outfit) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/outfits/add`, outfit)
+    .then((returnedOutfit) => resolve(returnedOutfit))
+    .catch((err) => reject(err));
+});
+
+export default { getUserOutfits, getOneOutfit, addOutfit };
