@@ -42,7 +42,8 @@ class OneOutfit extends React.Component {
         </div>
         <h3>Garments:</h3>
         <div className="row">
-          {garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)}
+          {garments ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)
+            : <p>Looks like there are no garments yet.  Care to add some?</p>}
         </div>
       </div>
     );
