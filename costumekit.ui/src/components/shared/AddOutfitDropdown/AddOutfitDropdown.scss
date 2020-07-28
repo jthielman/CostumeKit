@@ -1,0 +1,30 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.AddOutfitDropdown {
+  display: flex;
+  justify-content: center;
+
+  .error {
+    font-size: .75em;
+    color: darkred;
+  }
+}
+
+/* input:invalid {
+  border: 2px dashed red;
+}
+
+input:valid {
+  border: 2px solid black;
+} */
+
+.dropdown-menu {
+  left: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    width: 400px;
+  }
+}

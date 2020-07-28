@@ -3,6 +3,7 @@ import React from 'react';
 import outfitData from '../../../helpers/data/outfitData';
 
 import OutfitCard from '../../shared/OutfitCard/OutfitCard';
+import AddOutfitDropdown from '../../shared/AddOutfitDropdown/AddOutfitDropdown';
 
 import './Home.scss';
 
@@ -31,6 +32,7 @@ class Home extends React.Component {
         <div className="row">
           {outfits.map((outfit) => <OutfitCard outfit={outfit} key={outfit.id}/>)}
         </div>
+        <AddOutfitDropdown history={this.props.history} />
       </div>
     );
   }

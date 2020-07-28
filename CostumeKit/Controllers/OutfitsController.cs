@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CostumeKit.DataAccess;
+using CostumeKit.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,14 @@ namespace CostumeKit.Controllers
             var outfit = _outfitsRepository.GetOutfitById(outfitId);
             if (outfit == null) return NotFound("No such outfit found");
             else return Ok(outfit);
+        }
+
+        //api/Outfits/Add
+        [HttpPost("Add")]
+        public IActionResult AddOutfit(Outfit outfitToAdd)
+        {
+            var newOutfit = _outfitsRepository.AddAnOutfit(outfitToAdd);
+            return Created("", newOutfit);
         }
     }
 }
