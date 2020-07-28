@@ -22,6 +22,16 @@ namespace CostumeKit.Controllers
             _outfitsRepository = outfitsRepository;
         }
 
+        //api/Garments
+        [HttpGet]
+        public IActionResult GetAllGarments()
+        {
+            var allGarments = _garmentsRepository.GetGarments();
+            if (allGarments == null) return NotFound("No garments found");
+
+            return Ok(allGarments);
+        }
+
         //api/Garments/Outfit/1
         [HttpGet("Outfit/{outfitId}")]
         public IActionResult GetAllGarmentsByOutfitId(int outfitId)
