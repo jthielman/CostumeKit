@@ -51,7 +51,7 @@ class AddOutfitDropdown extends React.Component {
           : '';
         break;
       case 'newOutfitSettingId':
-        errors.setting = (value === '')
+        errors.setting = value === ''
           ? 'Please choose a setting'
           : '';
         break;
@@ -95,23 +95,23 @@ class AddOutfitDropdown extends React.Component {
     const { settings, errors } = this.state;
     return (
       <div className="AddOutfitDropdown dropdown">
-          <button onClick={this.openDropdown} className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button onClick={this.openDropdown} className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Make a New Outfit!
           </button>
-          <form className="dropdown-menu p-4" id="new-outfit-form" aria-labelledby="dropdownMenuButton">
+          <form className="dropdown-menu p-4" id="new-outfit-form" aria-labelledby="dropdownMenuButton" noValidate>
             <div className="form-group">
               <label htmlFor="newOutfitName">Name your outfit</label>
-              <input type="text" required className="form-control" id="newOutfitName" placeholder="Aragorn" onChange={this.handleChange}/>
+              <input type="text" className="form-control" id="newOutfitName" placeholder="Aragorn" onChange={this.handleChange}/>
               <span className="error">{errors.name.length > 0 && errors.name}</span>
             </div>
             <div className="form-group">
               <label htmlFor="newOutfitDescription">Tell about your outfit</label>
-              <textarea required className="form-control" id="newOutfitDescription" rows="3" placeholder="Isildur's heir, Elessar, the Elfstone, Telcontar..." onChange={this.handleChange} />
+              <textarea className="form-control" id="newOutfitDescription" rows="3" placeholder="Isildur's heir, Elessar, the Elfstone, Telcontar..." onChange={this.handleChange} />
               <span className="error">{errors.description.length > 0 && errors.description}</span>
             </div>
             <div className="form-group">
               <label htmlFor="newOutfitSettingId">Pick a setting</label>
-              <select required className="form-control" id="newOutfitSettingId" onChange={this.handleChange}>
+              <select className="form-control" id="newOutfitSettingId" onChange={this.handleChange}>
                 <option key="0" value={null}></option>
                 {settings.map((setting) => <option key={setting.id} value={setting.id}>{setting.name}</option>)}
               </select>

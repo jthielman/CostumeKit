@@ -1,3 +1,5 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 .AddOutfitDropdown {
   display: flex;
   justify-content: center;
@@ -18,4 +20,11 @@ input:valid {
 
 .dropdown-menu {
   left: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    width: 400px;
+  }
 }
