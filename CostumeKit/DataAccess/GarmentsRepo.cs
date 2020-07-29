@@ -34,5 +34,19 @@ namespace CostumeKit.DataAccess
                 return result;
             }
         }
+
+        public IEnumerable<Garment> GetGarments()
+        {
+            var sql = @"
+                        select *
+						from Garments
+                        ";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var result = db.Query<Garment>(sql);
+                return result;
+            }
+        }
     }
 }
