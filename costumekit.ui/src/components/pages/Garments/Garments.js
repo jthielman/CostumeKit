@@ -1,5 +1,10 @@
 import React from 'react';
+
 import garmentData from '../../../helpers/data/garmentData';
+
+import GarmentCard from '../../shared/GarmentCard/GarmentCard';
+
+import './Garments.scss';
 
 class Garments extends React.Component {
   state = {
@@ -17,8 +22,14 @@ class Garments extends React.Component {
   }
 
   render() {
+    const { garments } = this.state;
     return (
-      <h1>Garments Page</h1>
+      <div className="Garments container">
+        <h1>Garments Page</h1>
+        <div className="row">
+          {garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)}
+        </div>
+      </div>
     );
   }
 }
