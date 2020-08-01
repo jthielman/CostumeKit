@@ -52,7 +52,6 @@ class OneOutfit extends React.Component {
     e.preventDefault();
     const { outfit } = this.state;
     const editMode = `${e.currentTarget.id.slice(4).toLowerCase()}EditMode`;
-    console.log(editMode);
     outfitData.updateDetails(outfit)
       .then(() => {
         this.setState({ [editMode]: false });
@@ -60,7 +59,6 @@ class OneOutfit extends React.Component {
   }
 
   render() {
-    // const { outfitId } = this.props.match.params;
     const {
       outfit,
       garments,
@@ -111,8 +109,8 @@ class OneOutfit extends React.Component {
           }
         </div>
         <h3>Garments:</h3>
-        <div className="row">
-          {garments ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)
+        <div className="row justify-content-center">
+          {garments.length > 0 ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)
             : <p>Looks like there are no garments yet.  Care to add some?</p>}
         </div>
       </div>
