@@ -11,6 +11,9 @@ class OneOutfit extends React.Component {
   state = {
     outfit: {},
     garments: [],
+    nameEditMode: false,
+    descriptionEditMode: false,
+    settingEditMode: false,
   }
 
   getOutfit = (outfitId) => {
@@ -33,40 +36,54 @@ class OneOutfit extends React.Component {
 
   editButtonClick = (e) => {
     e.preventDefault();
-    // const detailToEdit = e.target.id.slice(4);
-    console.log(e);
-    // document.getElementById(detailToEdit).classList.toggle('hide');
+    this.setState({ editMode: true });
   }
 
   render() {
     // const { outfitId } = this.props.match.params;
-    const { outfit, garments } = this.state;
+    const {
+      outfit,
+      garments,
+      nameEditMode,
+      descriptionEditMode,
+      settingEditMode,
+    } = this.state;
     return (
       <div className="OneOutfit container">
         <div className="row d-flex justify-content-center align-items-baseline">
           <div className="col-4">
-            <div id="Name" className="row d-flex justify-content-between align-items-baseline">
-              <h2>{outfit ? outfit.name : ''}</h2>
-              <button type="button" className="btn text-muted" id="editName" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
-            </div>
-            <div className="row input-group">
-              <input className="form-control form-control-lg" type="text" />
-              <div className="input-group-append">
-                <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
-              </div>
-            </div>
-            <div className="row d-flex justify-content-between align-items-baseline">
-              <h4 className="text-muted">{outfit.settingName}</h4>
-              <button type="button" className="btn text-muted" id="editSetting" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
-            </div>
-            <div className="row input-group">
-              <input className="form-control" type="text" />
-              <div className="input-group-append">
-                <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
-              </div>
-            </div>
+            {nameEditMode
+              ? <div className="row input-group">
+                  <input id="name" className="form-control form-control-lg" type="text" value={outfit.name} />
+                  <div className="input-group-append">
+                    <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
+                  </div>
+                </div>
+              : <div id="Name" className="row d-flex justify-content-between align-items-baseline">
+                  <h2>{outfit ? outfit.name : ''}</h2>
+                  <button type="button" className="btn text-muted" id="editName" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                </div>
+            }
+            {settingEditMode
+              ? <div className="row input-group">
+                  <input id="setting" className="form-control" type="text" />
+                  <div className="input-group-append">
+                    <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
+                  </div>
+                </div>
+              : <div className="row d-flex justify-content-between align-items-baseline">
+                  <h4 className="text-muted">{outfit.settingName}</h4>
+                  <button type="button" className="btn text-muted" id="editSetting" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                </div>
+            }
           </div>
-          <p className="outfit-description col">{outfit.description}</p>
+          {descriptionEditMode
+            ? <textarea id="description" value={outfit.description} />
+            : <div className="row d-flex justify-content-between align-items-baseline">
+                <p className="outfit-description col">{outfit.description}</p>
+                <button type="button" className="btn text-muted" id="editSetting" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+              </div>
+          }
         </div>
         <h3>Garments:</h3>
         <div className="row">
