@@ -37,16 +37,26 @@ class OneOutfit extends React.Component {
   editButtonClick = (e) => {
     e.preventDefault();
     e.persist();
-    console.log(e);
     const { id } = e.currentTarget;
     this.setState({ [id]: true });
   }
 
   handleChange = (e) => {
-    e.preventDefault();
-    const { id, value } = e.target;
+    const { value, id } = e.target;
     const { outfit } = this.state;
-    this.setState({ outfit, [id]: value });
+    outfit[id] = value;
+    this.setState({ outfit });
+  }
+
+  saveChanges = (e) => {
+    e.preventDefault();
+    const { outfit } = this.state;
+    const editMode = `${e.currentTarget.id.slice(4).toLowerCase()}EditMode`;
+    console.log(editMode);
+    outfitData.updateDetails(outfit)
+      .then(() => {
+        this.setState({ [editMode]: false });
+      });
   }
 
   render() {
@@ -66,7 +76,7 @@ class OneOutfit extends React.Component {
               ? <div className="row input-group">
                   <input id="name" className="form-control form-control-lg" type="text" value={outfit.name} onChange={this.handleChange} />
                   <div className="input-group-append">
-                    <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
+                    <button id="saveName" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                   </div>
                 </div>
               : <div id="Name" className="row d-flex justify-content-between align-items-baseline">
@@ -78,7 +88,7 @@ class OneOutfit extends React.Component {
               ? <div className="row input-group">
                   <input id="setting" className="form-control" type="text" value={outfit.settingName} onChange={this.handleChange} />
                   <div className="input-group-append">
-                    <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
+                    <button id="saveSetting" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                   </div>
                 </div>
               : <div className="row d-flex justify-content-between align-items-baseline">
@@ -91,7 +101,7 @@ class OneOutfit extends React.Component {
             ? <div className="col-6 input-group">
                 <textarea id="description" className="form-control" value={outfit.description} onChange={this.handleChange} />
                 <div className="input-group-append">
-                  <button type="button" className="btn btn-outline-secondary"><i className="fas fa-check"></i></button>
+                  <button id="saveDescription" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                 </div>
               </div>
             : <div className="row d-flex justify-content-between align-items-baseline">
