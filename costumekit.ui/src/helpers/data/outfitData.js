@@ -21,4 +21,15 @@ const addOutfit = (outfit) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserOutfits, getOneOutfit, addOutfit };
+const updateDetails = (outfit) => new Promise((resolve, reject) => {
+  axios.put(`${baseUrl}/outfits/update/`, outfit)
+    .then((result) => resolve(result))
+    .catch((err) => reject(err));
+});
+
+export default {
+  getUserOutfits,
+  getOneOutfit,
+  addOutfit,
+  updateDetails,
+};

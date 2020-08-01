@@ -59,5 +59,18 @@ namespace CostumeKit.Controllers
             var newOutfit = _outfitsRepository.AddAnOutfit(outfitToAdd);
             return Created("", newOutfit);
         }
+
+        //api/Outfits/Update
+        [HttpPut("Update")]
+        public IActionResult UpdateOutfit(Outfit outfitToUpdate)
+        {
+            var isValidOutfit = _outfitsRepository.GetOutfitById(outfitToUpdate.Id);
+            if (isValidOutfit != null)
+            {
+                var updatedOutfit = _outfitsRepository.Update(outfitToUpdate);
+                return Ok(updatedOutfit);
+            }
+            return NotFound("That outfit does not exist and could not be deleted");
+        }
     }
 }

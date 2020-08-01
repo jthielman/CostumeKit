@@ -66,5 +66,29 @@ namespace CostumeKit.DataAccess
                 return newOutfit;
             }
         }
+
+        public Outfit Update(Outfit outfitToUpdate)
+        {
+            var sql = @"
+                        update Outfits
+                        set [Name] = @Name, [Description] = @Description, [UserId] = @UserId, [SettingId] = @SettingId
+                        where Id = @Id;
+                      ";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var parameters = new
+                {
+                    Id = outfitToUpdate.Id,
+                    Name = outfitToUpdate.Name,
+                    Description = outfitToUpdate.Description,
+                    UserId = outfitToUpdate.UserId,
+                    SettingId = outfitToUpdate.SettingId
+                };
+                var result = db.QueryFirstOrDefault<Outfit>(sql, parameters);
+                return result;
+
+            }
+        }
     }
 }
