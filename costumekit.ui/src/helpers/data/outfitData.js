@@ -22,8 +22,8 @@ const addOutfit = (outfit) => new Promise((resolve, reject) => {
 });
 
 const updateDetails = (outfit) => new Promise((resolve, reject) => {
-  axios.put(`${baseUrl}/outfits/update/${outfit.id}`, outfit)
-    .then((updatedOutfit) => resolve(updatedOutfit.data))
+  axios.put(`${baseUrl}/outfits/update/`, outfit)
+    .then((result) => resolve(result))
     .catch((err) => reject(err));
 });
 
