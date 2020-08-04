@@ -14,8 +14,7 @@ class GarmentCard extends React.Component {
 
   getOutfits = () => {
     const { userId } = this.state;
-    const garmentId = this.props.id;
-    console.log(garmentId);
+    const garmentId = this.props.garment.id;
     outfitData.getAvailableUserOutfitsByGarmentId(userId, garmentId)
       .then((outfits) => this.setState({ outfits }))
       .catch((err) => console.error(err));
