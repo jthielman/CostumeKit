@@ -48,5 +48,31 @@ namespace CostumeKit.Controllers
                 else return Ok(garments);
             }
         }
+
+        //api/Garments/9/Outfit/3
+        [HttpPost("{garmentId}/outfits/{outfitId}")]
+        public IActionResult AddGarmentToOutfit(int garmentId, int outfitId)
+        {
+            var validOutfit = _outfitsRepository.GetOutfitById(outfitId);
+            var validGarment = _garmentsRepository.GetGarmentById(garmentId);
+            var alreadyExists = _garmentsRepository.CheckForExistentOutfitGarment(garmentId, outfitId);
+            if (validOutfit == null)
+            {
+                return NotFound("No such outfit found.");
+            }
+            else if (validGarment == null)
+            {
+                return NotFound("No such garment found");
+            }
+            else if (alreadyExists != null)
+            {
+                return BadRequest("The garment is already in the outfit");
+            }
+            else
+            {
+                var newOutfitGarment = _garmentsRepository.AddOutfitGarment(garmentId, outfitId);
+                return Created("", newOutfitGarment);
+            }
+        }
     }
 }

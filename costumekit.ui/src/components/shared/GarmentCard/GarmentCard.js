@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
+import garmentData from '../../../helpers/data/garmentData';
 import outfitData from '../../../helpers/data/outfitData';
 
 import './GarmentCard.scss';
@@ -28,6 +29,13 @@ class GarmentCard extends React.Component {
     document.getElementById(`add-garment-dropdown${garment.id}`).classList.toggle('show');
   }
 
+  addGarmentToOutfit = (e) => {
+    e.preventDefault();
+    const { garment } = this.props;
+    const outfitId = e.target.id;
+    garmentData.addGarmentToOutfit(garment.id, outfitId);
+  }
+
   render() {
     const { garment } = this.props;
     const { outfits } = this.state;
@@ -41,7 +49,7 @@ class GarmentCard extends React.Component {
               Add to outfit
             </button>
             <div id={`add-garment-dropdown${garment.id}`} className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {outfits.map((outfit) => <button className="dropdown-item" type="button" key={outfit.id}>{outfit.name}</button>)}
+              {outfits.map((outfit) => <button id={outfit.id} className="dropdown-item" type="button" key={outfit.id} onClick={this.addGarmentToOutfit}>{outfit.name}</button>)}
             </div>
           </div>
           {/* TODO: decide if there needs to be a link here to a garment page
