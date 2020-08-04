@@ -27,9 +27,16 @@ const updateDetails = (outfit) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getAvailableUserOutfitsByGarmentId = (userId, garmentId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/outfits/user/${userId}/garment/${garmentId}`)
+    .then((output) => resolve(output.data))
+    .catch((err) => reject(err));
+});
+
 export default {
   getUserOutfits,
   getOneOutfit,
   addOutfit,
   updateDetails,
+  getAvailableUserOutfitsByGarmentId,
 };

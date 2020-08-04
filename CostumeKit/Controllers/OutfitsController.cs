@@ -72,5 +72,21 @@ namespace CostumeKit.Controllers
             }
             return NotFound("That outfit does not exist and could not be deleted");
         }
+
+        //api/Outfits/User/${userId}/garment/${garmentId}
+        [HttpGet("User/{userId}/Garment/{garmentId}")]
+        public IActionResult GetOutfitsByGarmentId(int userId, int garmentId)
+        {
+            var validUser = _usersRepository.GetUserById(userId);
+            if (validUser == null)
+            {
+                return NotFound("No such user found.");
+            }
+            else
+            {
+                var outfits = _outfitsRepository.GetAvailableUserOutfitsByGarmentId(userId, garmentId);
+                return Ok(outfits);
+            }
+        }
     }
 }

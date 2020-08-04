@@ -90,5 +90,30 @@ namespace CostumeKit.DataAccess
 
             }
         }
+
+        public IEnumerable<Outfit> GetAvailableUserOutfitsByGarmentId(int userId, int garmentId)
+        {
+            var sql = @"
+                        select distinct o.Id
+                        into #outfitsWeDontWant
+                        from Outfits o
+	                        left join OutfitGarments og
+		                        on o.Id = og.OutfitId
+                        where GarmentId = @GarmentId
+
+                        select distinct o.*, s.[Name] SettingName
+                        from Outfits o
+	                        join Settings s
+	                            on o.SettingId = s.Id
+                        where UserId = @UserId and o.Id not in(select Id from #outfitsWeDontWant)
+                        ";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var parameters = new { UserId = userId, GarmentId = garmentId };
+                var result = db.Query<Outfit>(sql, parameters);
+                return result;
+            }
+        }
     }
 }

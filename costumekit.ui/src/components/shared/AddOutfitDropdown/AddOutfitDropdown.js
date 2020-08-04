@@ -83,7 +83,7 @@ class AddOutfitDropdown extends React.Component {
         name: newOutfitName,
         description: newOutfitDescription,
         userId,
-        settingId: newOutfitSettingId,
+        settingId: parseInt(newOutfitSettingId, 10),
       };
       outfitData.addOutfit(outfitToAdd)
         .then((newOutfit) => this.props.history.push(`/outfit/${newOutfit.id}`))
