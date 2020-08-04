@@ -33,7 +33,9 @@ class GarmentCard extends React.Component {
     e.preventDefault();
     const { garment } = this.props;
     const outfitId = e.target.id;
-    garmentData.addGarmentToOutfit(garment.id, outfitId);
+    garmentData.addGarmentToOutfit(garment.id, outfitId)
+      .then(() => document.getElementById(`add-garment-dropdown${garment.id}`).classList.toggle('show'))
+      .catch((err) => console.error(err));
   }
 
   render() {

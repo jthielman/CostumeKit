@@ -21,7 +21,7 @@ const getAllGarments = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const addGarmentToOutfit = (garmentId, outfitId) => new Promise((resolve, reject) =>{
+const addGarmentToOutfit = (garmentId, outfitId) => new Promise((resolve, reject) => {
   axios.post(`${baseUrl}/garments/${garmentId}/outfits/${outfitId}`)
     .then((output) => resolve(output.data))
     .catch((err) => reject(err));
