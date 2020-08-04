@@ -43,15 +43,15 @@ class GarmentCard extends React.Component {
     const { garment } = this.props;
     const { outfits } = this.state;
     return (
-      <div className="card col-md-3" key={garment.id}>
+      <div className="GarmentCard card col-md-3" key={garment.id}>
         <div className="card-body">
           <h5 className="card-title">{garment.name}</h5>
           <p className="card-text">{garment.description}</p>
-          <div className="dropdown show">
+          <div className="outfit-dropdown dropdown show">
             <button onClick={this.openDropdown} className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Add to outfit
             </button>
-            <div id={`add-garment-dropdown${garment.id}`} className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div id={`add-garment-dropdown${garment.id}`} className="dropdown-menu add-garment-dropdown" aria-labelledby="dropdownMenuButton">
               {outfits.map((outfit) => <button id={outfit.id} className="dropdown-item" type="button" key={outfit.id} onClick={this.addGarmentToOutfit}>{outfit.name}</button>)}
             </div>
           </div>

@@ -1,0 +1,14 @@
+.GarmentCard {
+  .outfit-dropdown {
+    display: flex;
+    justify-content: center;
+    
+    .add-garment-dropdown {
+      position: absolute;
+      transform: translate3d(0px, 38px, 0px);
+      top: 0px;
+      left: auto;
+      will-change: transform;
+    }
+  }
+}
