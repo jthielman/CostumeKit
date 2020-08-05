@@ -39,14 +39,27 @@ class GarmentCard extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  removeGarment = (e) => {
+    e.preventDefault();
+    e.persist();
+    console.log(e.currentTarget);
+    /* const { garment, outfit } = this.props;
+    garmentData.removeFromOutfit(garment.id, outfit.id)
+      .then(() => this.props.getGarments(outfit.id))
+      .catch((err) => console.error(err)); */
+  }
+
   render() {
     const { garment } = this.props;
     const { outfits } = this.state;
-    const { match } = this.props;
+    const parentOutfit = this.props.outfit;
     return (
       <div className="GarmentCard card col-md-3" key={garment.id}>
-        { match && <span id="remove-garment" onClick={this.removeGarment}><i className="fas fa-times"></i></span> }
-        <div className={`card-body ${match && 'remove-garment'}`}>
+        <div className="delete-button-holder">
+          { parentOutfit && <button type="button" className="btn" onClick={this.removeGarment} id="remove-garment"><i className="fas fa-times"></i></button> }
+
+        </div>
+        <div className={`card-body ${parentOutfit && 'garment-on-outfit-page'}`}>
           <h5 className="card-title">{garment.name}</h5>
           <p className="card-text">{garment.description}</p>
           <div className="outfit-dropdown dropdown show">
