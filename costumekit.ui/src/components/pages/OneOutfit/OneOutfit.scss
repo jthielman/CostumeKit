@@ -1,3 +1,9 @@
+@import '../../../styles/variables';
+
 .outfit-description {
   font-size: 1.3rem;
+}
+
+.garment-link {
+  color: $linkColor;
 }

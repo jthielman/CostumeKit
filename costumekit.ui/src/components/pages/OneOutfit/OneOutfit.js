@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import outfitData from '../../../helpers/data/outfitData';
 import garmentData from '../../../helpers/data/garmentData';
@@ -134,7 +135,7 @@ class OneOutfit extends React.Component {
         <div className="row justify-content-center">
           {garments.length > 0
             ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
-            : <p>Looks like there are no garments yet.  Care to add some?</p>}
+            : <p>Looks like there are no garments yet.  Care to <Link to="/garments" className="garment-link">add some</Link>?</p>}
         </div>
       </div>
     );
