@@ -1,4 +1,20 @@
 .GarmentCard {
+  .delete-button-holder {
+    display: flex;
+    justify-content: flex-end;
+
+    #remove-garment {
+      color: rgb(219, 0, 0);
+      margin-top: 15px;
+      padding: 0px;
+    }
+  }
+
+  .garment-on-outfit-page {
+    margin-top: -20px;
+    pointer-events: none;
+  }
+  
   .outfit-dropdown {
     display: flex;
     justify-content: center;

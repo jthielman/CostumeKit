@@ -110,7 +110,7 @@ class OneOutfit extends React.Component {
         </div>
         <h3>Garments:</h3>
         <div className="row justify-content-center">
-          {garments.length > 0 ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)
+          {garments.length > 0 ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
             : <p>Looks like there are no garments yet.  Care to add some?</p>}
         </div>
       </div>

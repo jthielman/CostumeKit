@@ -62,16 +62,42 @@ namespace CostumeKit.Controllers
             }
             else if (validGarment == null)
             {
-                return NotFound("No such garment found");
+                return NotFound("No such garment found.");
             }
             else if (alreadyExists != null)
             {
-                return BadRequest("The garment is already in the outfit");
+                return BadRequest("The garment is already in the outfit.");
             }
             else
             {
                 var newOutfitGarment = _garmentsRepository.AddOutfitGarment(garmentId, outfitId);
                 return Created("", newOutfitGarment);
+            }
+        }
+
+        //api/Garments/9/Outfit/3
+        [HttpDelete("{garmentId}/outfits/{outfitId}")]
+        public IActionResult RemoveGarmentFromOutfit(int garmentId, int outfitId)
+        {
+            var validOutfit = _outfitsRepository.GetOutfitById(outfitId);
+            var validGarment = _garmentsRepository.GetGarmentById(garmentId);
+            var exists = _garmentsRepository.CheckForExistentOutfitGarment(garmentId, outfitId);
+            if (validOutfit == null)
+            {
+                return NotFound("No such outfit found.");
+            }
+            else if (validGarment == null)
+            {
+                return NotFound("No such garment found.");
+            }
+            else if (exists == null)
+            {
+                return BadRequest("The garment is not even in the outfit.");
+            }
+            else
+            {
+                _garmentsRepository.DeleteOutfitGarment(garmentId, outfitId);
+                return Ok("The garment has been removed from the outfit.");
             }
         }
     }

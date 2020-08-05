@@ -27,9 +27,16 @@ const addGarmentToOutfit = (garmentId, outfitId) => new Promise((resolve, reject
     .catch((err) => reject(err));
 });
 
+const removeFromOutfit = (garmentId, outfitId) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/garments/${garmentId}/outfits/${outfitId}`)
+    .then((output) => resolve(output))
+    .catch((err) => reject(err));
+});
+
 export default {
   getGarmentsByOutfitId,
   getOneGarment,
   getAllGarments,
   addGarmentToOutfit,
+  removeFromOutfit,
 };
