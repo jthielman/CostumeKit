@@ -42,9 +42,11 @@ class GarmentCard extends React.Component {
   render() {
     const { garment } = this.props;
     const { outfits } = this.state;
+    const { match } = this.props;
     return (
       <div className="GarmentCard card col-md-3" key={garment.id}>
-        <div className="card-body">
+        { match && <span id="remove-garment" onClick={this.removeGarment}><i className="fas fa-times"></i></span> }
+        <div className={`card-body ${match && 'remove-garment'}`}>
           <h5 className="card-title">{garment.name}</h5>
           <p className="card-text">{garment.description}</p>
           <div className="outfit-dropdown dropdown show">

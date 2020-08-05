@@ -1,4 +1,15 @@
 .GarmentCard {
+  #remove-garment {
+    color: rgb(219, 0, 0);
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+
+  .remove-garment {
+    margin-top: -20px;
+  }
+  
   .outfit-dropdown {
     display: flex;
     justify-content: center;
