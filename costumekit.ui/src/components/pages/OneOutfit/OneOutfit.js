@@ -27,7 +27,10 @@ class OneOutfit extends React.Component {
   getGarments = (outfitId) => {
     garmentData.getGarmentsByOutfitId(outfitId)
       .then((response) => this.setState({ garments: response }))
-      .catch((err) => console.error('error in get garments', err));
+      .catch((err) => {
+        this.setState({ garments: [] });
+        console.error('error in get garments', err);
+      });
   }
 
   getSettings = () => {
@@ -129,7 +132,8 @@ class OneOutfit extends React.Component {
         </div>
         <h3>Garments:</h3>
         <div className="row justify-content-center">
-          {garments.length > 0 ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
+          {garments.length > 0
+            ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
             : <p>Looks like there are no garments yet.  Care to add some?</p>}
         </div>
       </div>

@@ -45,7 +45,10 @@ class GarmentCard extends React.Component {
     const { garment, outfit } = this.props;
     garmentData.removeFromOutfit(garment.id, outfit.id)
       .then(() => this.props.getGarments(outfit.id))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        this.props.getGarments(outfit.id);
+        console.error(err);
+      });
   }
 
   render() {
