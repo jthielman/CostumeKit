@@ -92,5 +92,17 @@ namespace CostumeKit.DataAccess
                 return results;
             }
         }
+
+        public void DeleteOutfitGarment(int garmentId, int outfitId)
+        {
+            var sql = @"delete from OutfitGarments
+                        where GarmentId = @GarmentId and OutfitId = @OutfitId";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var parameters = new { GarmentId = garmentId, OutfitId = outfitId };
+                db.Execute(sql, parameters);
+            }
+        }
     }
 }
