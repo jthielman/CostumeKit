@@ -59,7 +59,7 @@ class AddGarmentDropdown extends React.Component {
     const {
       errors, newGarmentName, newGarmentDescription, userId,
     } = this.state;
-    if (this.validateForm(errors)) {
+    if (this.validateForm(errors) && newGarmentName.length > 0 && newGarmentDescription > 0) {
       const garmentToAdd = {
         name: newGarmentName,
         description: newGarmentDescription,
