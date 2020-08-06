@@ -5,6 +5,7 @@ import garmentData from '../../../helpers/data/garmentData';
 import GarmentCard from '../../shared/GarmentCard/GarmentCard';
 
 import './Garments.scss';
+import AddGarmentDropdown from '../../shared/AddGarmentDropdown/AddGarmentDropdown';
 
 class Garments extends React.Component {
   state = {
@@ -29,6 +30,7 @@ class Garments extends React.Component {
         <div className="row">
           {garments.map((garment) => <GarmentCard garment={garment} key={garment.id} />)}
         </div>
+        <AddGarmentDropdown getAllGarments={this.getAllGarments} />
       </div>
     );
   }
