@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import outfitData from '../../../helpers/data/outfitData';
 import garmentData from '../../../helpers/data/garmentData';
+import settingData from '../../../helpers/data/settingData';
 
 import GarmentCard from '../../shared/GarmentCard/GarmentCard';
 
@@ -11,6 +13,7 @@ class OneOutfit extends React.Component {
   state = {
     outfit: {},
     garments: [],
+    settings: [],
     nameEditMode: false,
     descriptionEditMode: false,
     settingEditMode: false,
@@ -25,13 +28,23 @@ class OneOutfit extends React.Component {
   getGarments = (outfitId) => {
     garmentData.getGarmentsByOutfitId(outfitId)
       .then((response) => this.setState({ garments: response }))
-      .catch((err) => console.error('error in get garments', err));
+      .catch((err) => {
+        this.setState({ garments: [] });
+        console.error('error in get garments', err);
+      });
+  }
+
+  getSettings = () => {
+    settingData.getAllSettings()
+      .then((settings) => this.setState({ settings }))
+      .catch((err) => console.error(err));
   }
 
   componentDidMount() {
     const { outfitId } = this.props.match.params;
     this.getOutfit(outfitId);
     this.getGarments(outfitId);
+    this.getSettings();
   }
 
   editButtonClick = (e) => {
@@ -43,8 +56,14 @@ class OneOutfit extends React.Component {
 
   handleChange = (e) => {
     const { value, id } = e.target;
-    const { outfit } = this.state;
-    outfit[id] = value;
+    const { outfit, settings } = this.state;
+    const newSetting = settings.filter((setting) => setting.id === parseInt(value, 10));
+    if (id === 'setting') {
+      outfit.settingId = parseInt(value, 10);
+      outfit.settingName = newSetting[0].name;
+    } else {
+      outfit[id] = value;
+    }
     this.setState({ outfit });
   }
 
@@ -62,6 +81,7 @@ class OneOutfit extends React.Component {
     const {
       outfit,
       garments,
+      settings,
       nameEditMode,
       descriptionEditMode,
       settingEditMode,
@@ -84,7 +104,10 @@ class OneOutfit extends React.Component {
             }
             {settingEditMode
               ? <div className="row input-group">
-                  <input id="setting" className="form-control" type="text" value={outfit.settingName} onChange={this.handleChange} />
+                  <select className="form-control" id="setting" onChange={this.handleChange} value={outfit.settingId}>
+                    <option key="0" value={null}></option>
+                    {settings.map((setting) => <option key={setting.id} value={setting.id}>{setting.name}</option>)}
+                  </select>
                   <div className="input-group-append">
                     <button id="saveSetting" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                   </div>
@@ -110,8 +133,9 @@ class OneOutfit extends React.Component {
         </div>
         <h3>Garments:</h3>
         <div className="row justify-content-center">
-          {garments.length > 0 ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
-            : <p>Looks like there are no garments yet.  Care to add some?</p>}
+          {garments.length > 0
+            ? garments.map((garment) => <GarmentCard garment={garment} key={garment.id} outfit={outfit} getGarments={this.getGarments} />)
+            : <p>Looks like there are no garments yet.  Care to <Link to="/garments" className="garment-link">add some</Link>?</p>}
         </div>
       </div>
     );
