@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .AddOutfitDropdown {
   display: flex;
   justify-content: center;
@@ -5,6 +7,10 @@
   .error {
     font-size: .75em;
     color: darkred;
+  }
+
+  .add-button {
+    background-color: $linkColor;
   }
 }
 

@@ -28,7 +28,7 @@ class Home extends React.Component {
     const { outfits } = this.state;
     return (
       <div className="Home container">
-        <h2>Your outfits:</h2>
+        <h2>Your Outfits:</h2>
         <div className="row">
           {outfits.map((outfit) => <OutfitCard outfit={outfit} key={outfit.id}/>)}
         </div>

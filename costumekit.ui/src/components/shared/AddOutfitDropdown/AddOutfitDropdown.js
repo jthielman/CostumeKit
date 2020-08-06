@@ -98,7 +98,7 @@ class AddOutfitDropdown extends React.Component {
           <button onClick={this.openDropdown} className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Make a New Outfit!
           </button>
-          <form className="dropdown-menu p-4" id="new-outfit-form" aria-labelledby="dropdownMenuButton" noValidate>
+          <form className="dropdown-menu p-4 box-shadow" id="new-outfit-form" aria-labelledby="dropdownMenuButton" noValidate>
             <div className="form-group">
               <label htmlFor="newOutfitName">Name your outfit</label>
               <input type="text" className="form-control" id="newOutfitName" placeholder="Aragorn" onChange={this.handleChange}/>
@@ -117,7 +117,7 @@ class AddOutfitDropdown extends React.Component {
               </select>
               <span className="error">{errors.setting.length > 0 && errors.setting}</span>
             </div>
-            <button onClick={this.addOutfit} type="button" className="btn btn-primary">Add outfit</button>
+            <button onClick={this.addOutfit} type="button" className="btn btn-primary add-button">Add outfit</button>
           </form>
         </div>
     );

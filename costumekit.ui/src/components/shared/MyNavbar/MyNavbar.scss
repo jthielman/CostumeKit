@@ -5,11 +5,17 @@
   // border-bottom: 3px solid darkgreen;
   // box-shadow: 0 0.125rem 0.25rem rgba(42,42,42,0.075) !important;
 
+  a:hover {
+    text-decoration: none;
+  }
+
   .brand {
     color: #212529;
+    font-family: 'Almendra SC', serif;
   }
 
   ul {
     text-align: left;
+    font-size: 1.3rem;
   }
 }

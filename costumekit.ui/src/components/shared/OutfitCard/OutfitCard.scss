@@ -1,5 +1,11 @@
+@import '../../../styles/variables';
+
 .OutfitCard {
   margin: 5px;
+
+  .link {
+    color: $linkColor;
+  }
 }
 
 @media (min-width: 768px) {

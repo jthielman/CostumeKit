@@ -99,7 +99,7 @@ class OneOutfit extends React.Component {
                 </div>
               : <div id="Name" className="row d-flex justify-content-between align-items-baseline flex-nowrap">
                   <h2>{outfit ? outfit.name : ''}</h2>
-                  <button type="button" className="btn text-muted" id="nameEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                  <button type="button" className="btn edit-button" id="nameEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
                 </div>
             }
             {settingEditMode
@@ -114,7 +114,7 @@ class OneOutfit extends React.Component {
                 </div>
               : <div className="row d-flex justify-content-between align-items-baseline flex-nowrap">
                   <h4 className="text-muted">{outfit.settingName}</h4>
-                  <button type="button" className="btn text-muted" id="settingEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                  <button type="button" className="btn edit-button" id="settingEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
                 </div>
             }
           </div>
@@ -127,7 +127,7 @@ class OneOutfit extends React.Component {
               </div>
             : <div className="col-8 d-flex justify-content-between align-items-baseline flex-nowrap">
                 <p className="outfit-description col">{outfit.description}</p>
-                <button type="button" className="btn text-muted" id="descriptionEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                <button type="button" className="btn edit-button" id="descriptionEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
               </div>
           }
         </div>
