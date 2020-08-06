@@ -33,10 +33,17 @@ const removeFromOutfit = (garmentId, outfitId) => new Promise((resolve, reject) 
     .catch((err) => reject(err));
 });
 
+const addGarment = (garment) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/garments/add`, garment)
+    .then((returnedGarment) => resolve(returnedGarment.data))
+    .catch((err) => reject(err));
+});
+
 export default {
   getGarmentsByOutfitId,
   getOneGarment,
   getAllGarments,
   addGarmentToOutfit,
   removeFromOutfit,
+  addGarment,
 };
