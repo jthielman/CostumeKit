@@ -22,7 +22,10 @@
   .outfit-dropdown {
     display: flex;
     justify-content: center;
-    pointer-events: all;
+    
+    .dropdown-toggle {
+      pointer-events: all;
+    }
     
     .add-garment-dropdown {
       position: absolute;
