@@ -57,7 +57,7 @@ namespace CostumeKit.DataAccess
         {
             var sql = @"INSERT INTO Outfits ( Name, Description, UserId, SettingId)
                      output inserted.*
-                     VALUES(@Name, @Description,@UserId, @SettingId);";
+                     VALUES(@Name, @Description, @UserId, @SettingId);";
 
             using (var db = new SqlConnection(connectionString))
             {

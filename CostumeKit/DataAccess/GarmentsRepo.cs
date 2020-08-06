@@ -104,5 +104,18 @@ namespace CostumeKit.DataAccess
                 db.Execute(sql, parameters);
             }
         }
+
+        public Garment AddAGarment(Garment garmentToAdd)
+        {
+            var sql = @"INSERT INTO Garments ( Name, Description, UserId)
+                     output inserted.*
+                     VALUES(@Name, @Description, @UserId);";
+
+            using (var db = new SqlConnection(connectionString))
+            {
+                var newGarment = db.QueryFirstOrDefault<Garment>(sql, garmentToAdd);
+                return newGarment;
+            }
+        }
     }
 }

@@ -100,5 +100,13 @@ namespace CostumeKit.Controllers
                 return Ok("The garment has been removed from the outfit.");
             }
         }
+
+        //api/Garments/Add
+        [HttpPost("Add")]
+        public IActionResult AddGarment(Garment garmentToAdd)
+        {
+            var newGarment = _garmentsRepository.AddAGarment(garmentToAdd);
+            return Created("", newGarment);
+        }
     }
 }
