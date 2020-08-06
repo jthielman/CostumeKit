@@ -7,7 +7,7 @@ class OutfitCard extends React.Component {
   render() {
     const { outfit } = this.props;
     return (
-      <div className="card col-md-3" key={outfit.id}>
+      <div className="OutfitCard card col-md-3" key={outfit.id}>
         <div className="card-body">
           <h5 className="card-title">{outfit.name}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{outfit.settingName}</h6>
