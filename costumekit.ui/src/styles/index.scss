@@ -2,6 +2,14 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import 'variables';
 
+html {
+  font-size: 17px;
+}
+
 body {
   background-color: $favColor;
+}
+
+.box-shadow {
+  box-shadow: 2px 2px 2px darkgreen;
 }

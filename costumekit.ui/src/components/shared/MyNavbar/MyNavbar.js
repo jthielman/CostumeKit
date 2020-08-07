@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './MyNavbar.scss';
 
 const MyNavbar = () => (
-  <div className="MyNavbar">
+  <div className="MyNavbar box-shadow">
     <nav className="navbar navbar-expand-sm navbar-light">
       <Link to="/" className="brand"><h1>Costume Kit</h1></Link>
       <div className="collapse navbar-collapse show">

@@ -56,7 +56,7 @@ class GarmentCard extends React.Component {
     const { outfits } = this.state;
     const parentOutfit = this.props.outfit;
     return (
-      <div className="GarmentCard card col-md-3" key={garment.id}>
+      <div className="GarmentCard box-shadow card col-md-3" key={garment.id}>
         <div className="delete-button-holder">
           { parentOutfit && <button type="button" className="btn" onClick={this.removeGarment} id="remove-garment"><i className="fas fa-times"></i></button> }
         </div>

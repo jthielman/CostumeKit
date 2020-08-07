@@ -88,7 +88,7 @@ class OneOutfit extends React.Component {
     } = this.state;
     return (
       <div className="OneOutfit container">
-        <div className="row d-flex justify-content-center align-items-baseline">
+        <div className="row d-flex justify-content-center align-items-baseline align-content-stretch">
           <div className="col-4">
             {nameEditMode
               ? <div className="row input-group">
@@ -97,9 +97,9 @@ class OneOutfit extends React.Component {
                     <button id="saveName" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                   </div>
                 </div>
-              : <div id="Name" className="row d-flex justify-content-between align-items-baseline">
+              : <div id="Name" className="row d-flex justify-content-between align-items-baseline flex-nowrap">
                   <h2>{outfit ? outfit.name : ''}</h2>
-                  <button type="button" className="btn text-muted" id="nameEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                  <button type="button" className="btn edit-button" id="nameEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
                 </div>
             }
             {settingEditMode
@@ -112,22 +112,22 @@ class OneOutfit extends React.Component {
                     <button id="saveSetting" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                   </div>
                 </div>
-              : <div className="row d-flex justify-content-between align-items-baseline">
+              : <div className="row d-flex justify-content-between align-items-baseline flex-nowrap">
                   <h4 className="text-muted">{outfit.settingName}</h4>
-                  <button type="button" className="btn text-muted" id="settingEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                  <button type="button" className="btn edit-button" id="settingEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
                 </div>
             }
           </div>
           {descriptionEditMode
-            ? <div className="col-6 input-group">
+            ? <div className="col-8 input-group">
                 <textarea id="description" className="form-control" value={outfit.description} onChange={this.handleChange} />
                 <div className="input-group-append">
                   <button id="saveDescription" type="button" className="btn btn-outline-secondary" onClick={this.saveChanges}><i className="fas fa-check"></i></button>
                 </div>
               </div>
-            : <div className="row d-flex justify-content-between align-items-baseline">
+            : <div className="col-8 d-flex justify-content-between align-items-baseline flex-nowrap">
                 <p className="outfit-description col">{outfit.description}</p>
-                <button type="button" className="btn text-muted" id="descriptionEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
+                <button type="button" className="btn edit-button" id="descriptionEditMode" onClick={this.editButtonClick}><i className="fas fa-pen-fancy"></i></button>
               </div>
           }
         </div>

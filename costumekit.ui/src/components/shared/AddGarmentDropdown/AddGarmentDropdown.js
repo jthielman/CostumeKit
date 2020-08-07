@@ -59,7 +59,7 @@ class AddGarmentDropdown extends React.Component {
     const {
       errors, newGarmentName, newGarmentDescription, userId,
     } = this.state;
-    if (this.validateForm(errors)) {
+    if (this.validateForm(errors) && newGarmentName.length > 0 && newGarmentDescription > 0) {
       const garmentToAdd = {
         name: newGarmentName,
         description: newGarmentDescription,
@@ -84,7 +84,7 @@ class AddGarmentDropdown extends React.Component {
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Make a New Garment!
           </button>
-          <form className="dropdown-menu p-4" id="new-garment-form" aria-labelledby="dropdownMenuButton" noValidate>
+          <form className="dropdown-menu p-4 box-shadow" id="new-garment-form" aria-labelledby="dropdownMenuButton" noValidate>
             <div className="form-group">
               <label htmlFor="newGarmentName">Name your garment</label>
               <input type="text" className="form-control" id="newGarmentName" placeholder="Himation"
@@ -98,7 +98,7 @@ class AddGarmentDropdown extends React.Component {
                 ref={(element) => { this.descriptionInput = element; }} />
               <span className="error">{errors.description.length > 0 && errors.description}</span>
             </div>
-            <button onClick={this.addGarment} type="button" className="btn btn-primary">Add Garment</button>
+            <button onClick={this.addGarment} type="button" className="btn btn-primary add-button">Add Garment</button>
           </form>
         </div>
     );
