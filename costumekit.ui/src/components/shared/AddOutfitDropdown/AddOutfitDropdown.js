@@ -78,7 +78,7 @@ class AddOutfitDropdown extends React.Component {
     const {
       errors, newOutfitName, newOutfitDescription, userId, newOutfitSettingId,
     } = this.state;
-    if (this.validateForm(errors) && newOutfitName.length > 0 && newOutfitDescription > 0 && newOutfitSettingId > 0) {
+    if (this.validateForm(errors) && newOutfitName.length > 0 && newOutfitDescription.length > 0 && newOutfitSettingId > 0) {
       const outfitToAdd = {
         name: newOutfitName,
         description: newOutfitDescription,
