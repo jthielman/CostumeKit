@@ -1,3 +1,29 @@
+# Costume Kit
+
+## Description
+As a tailor and hobbyist costumer, I enjoy sewing and wearing historical and fantasy costumes, but sometimes there is such a variety of garments involved in each outfit that it is hard to keep track of them all, particularly because some garments are used for more than one outfit. So I have made this React app that will help me keep track of all my costume outfits and which garments are included in each. Users can add outfits to their account, manage the garments in each, and see all the garments in the database for inspiration or to add to their own outfit(s). I used Bootstrap for layout and styling and React Router DOM for routing; I also developed the web API in C#/.NET and the database using T-SQL.
+
+## Screenshots
+The home page shows the user's outfits:
+![Home page](https://raw.githubusercontent.com/jthielman/costumekit/master/screenshots/main_view.png)
+
+Clicking on one outfit will show that outfit's page:
+![Outfit page](https://raw.githubusercontent.com/jthielman/costumekit/master/screenshots/outfit_view.png)
+
+And there is a page to show all garments in the database:
+![Garments page](https://raw.githubusercontent.com/jthielman/costumekit/master/screenshots/garments_view.png)
+
+## Technologies used:
+HTML, SCSS, JavaScript, Version Control with Github, Webpack, React, C#, ASP.NET Core 3.1, Dapper, T-SQL
+
+## How to Run
+- Clone down this project
+- At the root of the project run the following command: `npm install`
+- You will need to set up a database to run locally (run the script in `CostumeKitDatabaseScript.sql` in SQL Server) and add the api keys of that database to a file in this project called `src/helpers/apiKeys.json`, using the example of `src/helpers/apiKeys.example.json`.
+- Then run this command: `npm start`
+- A window or tab should automatically open in your browser.
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -11,11 +37,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
